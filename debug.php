@@ -1,7 +1,5 @@
 <?php
-class Debug{
-	
-	static function dbg(){
+	function dbg(){
 		$str = '';
 		$args = func_get_args();
 		foreach($args as $k=>$arg){
@@ -14,5 +12,4 @@ class Debug{
 		
 	}
 	
-}
 ?>
