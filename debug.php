@@ -1,5 +1,5 @@
 <?php
-	
+class Debug{	
 	static function dbg(){
 		$str = '';
 		$num = getmypid();//used in js to keep console vars separate
@@ -188,5 +188,5 @@ HTML;
 		return $arg_index_collector;
 	}
 	
-	
+}
 ?>
