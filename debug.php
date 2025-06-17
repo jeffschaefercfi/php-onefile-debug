@@ -68,6 +68,57 @@ HTML;
 	}
 	
 	
+	static function consoledbg(){// a better output format for reading this on the command line
+		$str = '';
+		++self::$dbg_instances;
+		$args = func_get_args();
+		$bt = debug_backtrace();
+		$filename = $bt[0]['file'];
+		$line = $bt[0]['line'];
+		$arg_idx = self::get_arg_index($line,$filename,'debug::consoledbg');
+
+		$str .= '==========
+Debug '.self::$dbg_instances;
+		$str .= ' '.$filename.' Line '.$line.'
+   ';
+		$start_time = $GLOBALS['start_time']??microtime(1);
+		$now = microtime(1);
+		$time_elapsed = round($now - $start_time,4);
+		$mem = memory_get_usage(1);
+		$peakmemory = memory_get_peak_usage(1);
+		$elapsed = 'Elapsed: '.$time_elapsed.' | Memory: '.$mem.' | Peak Memory: '.$peakmemory;
+		$str .= $elapsed;
+
+		foreach($args as $k=>$arg){
+			$argname = $arg_idx[$k];//name of arg
+			$argtype = gettype($arg);
+			$argvalue = print_r($arg,true);
+			if($argtype == 'array'){
+				$argtype .= ' | Count: '.count($arg);
+			}elseif($argtype == 'string'){
+				$argtype .= ' | Length: '.strlen($arg);
+			}
+
+			$str .= '
+   ';
+			$str .= $argname;
+			$str .= ' | Type: ';
+			$str .= $argtype;
+			$str .= '
+   ';
+			$str .= $argvalue;
+			$str .= '
+==========
+';
+
+
+		}
+
+		echo $str;
+		return;
+	}
+	
+	
 		static function get_dbg_css(){
 		return <<<HTML
 <style>
