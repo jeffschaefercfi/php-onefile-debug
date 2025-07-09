@@ -1,5 +1,8 @@
 <?php
-class Debug{	
+class Debug{
+
+	private static $dbg_instances = 0;//use to keep separate instances
+
 	static function dbg(){
 		$str = '';
 		$num = getmypid();//used in js to keep console vars separate
