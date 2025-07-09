@@ -2,6 +2,7 @@
 class Debug{
 
 	private static $dbg_instances = 0;//use to keep separate instances
+	private static $css_echoed = false;//did we already print the css to the browser?
 
 	static function dbg(){
 		$str = '';
@@ -12,8 +13,9 @@ class Debug{
 		$filename = $bt[0]['file'];
 		$line = $bt[0]['line'];
 		$arg_idx = self::get_arg_index($line,$filename);
-		if(self::$dbg_instances == 1){
+		if(!self::$css_echoed){
 			$str .= self::get_dbg_css();
+			self::$css_echoed = true;//set it to true so it doesn't get printed again
 		}
 		$str .= '<div class="debug-outer">';
 		$str .= '	<div class="debug-header">';
