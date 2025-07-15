@@ -3,6 +3,7 @@ class Debug{
 
 	private static $dbg_instances = 0;//use to keep separate instances
 	private static $css_echoed = false;//did we already print the css to the browser?
+	private static $file_cache = array();
 
 	static function dbg(){
 		$str = '';
@@ -156,7 +157,10 @@ HTML;
 
 	static function get_arg_index($line,$abs_file,$dbgfuncname='debug::dbg'){
 		$line = $line - 1;
-		$content = file_get_contents($abs_file);
+		if(!isset(self::$file_cache[$abs_file])){
+			self::$file_cache[$abs_file] = file_get_contents($abs_file);//pull the contents straight into the cache
+		}
+		$content = self::$file_cache[$abs_file];
 		$lines = explode(PHP_EOL,$content);
 		$dbgline = $lines[$line];
 		$dbgpos = strpos(strtolower($dbgline),strtolower($dbgfuncname));
