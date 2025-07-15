@@ -1,0 +1,21 @@
+{
+  "name": "dev/php-onefile-debug",
+  "type": "library",
+  "description": "Lightweight But Powerful Debugging ",
+  "keywords": [
+    "php",
+    "debug"
+  ],
+  "homepage": "https://github.com/jeffschaefercfi",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jeff Schaefer",
+      "email": "jas891@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.4.0"
+  }
+}
