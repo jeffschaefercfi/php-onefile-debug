@@ -1,5 +1,5 @@
 {
-  "name": "dev/php-onefile-debug",
+  "name": "php-dev/php-onefile-debug",
   "type": "library",
   "description": "Lightweight But Powerful Debugging ",
   "keywords": [
